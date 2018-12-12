@@ -1,0 +1,159 @@
+{
+    "AllAtOnce": false,
+    "Constraints": null,
+    "CreateIndex": 931,
+    "Datacenters": [
+        "dc1"
+    ],
+    "Dispatched": false,
+    "ID": "custom_img_batch_3",
+    "JobModifyIndex": 931,
+    "Meta": null,
+    "Migrate": null,
+    "ModifyIndex": 948,
+    "Name": "custom_img_batch_3",
+    "Namespace": "default",
+    "ParameterizedJob": null,
+    "ParentID": "",
+    "Payload": null,
+    "Periodic": null,
+    "Priority": 50,
+    "Region": "global",
+    "Reschedule": null,
+    "Stable": false,
+    "Status": "dead",
+    "StatusDescription": "",
+    "Stop": false,
+    "SubmitTime": 1544271179496004713,
+    "TaskGroups": [
+        {
+            "Constraints": null,
+            "Count": 1,
+            "EphemeralDisk": {
+                "Migrate": false,
+                "SizeMB": 300,
+                "Sticky": false
+            },
+            "Meta": null,
+            "Migrate": null,
+            "Name": "long_running_process_group",
+            "ReschedulePolicy": {
+                "Attempts": 1,
+                "Delay": 5000000000,
+                "DelayFunction": "constant",
+                "Interval": 86400000000000,
+                "MaxDelay": 0,
+                "Unlimited": false
+            },
+            "RestartPolicy": {
+                "Attempts": 0,
+                "Delay": 15000000000,
+                "Interval": 86400000000000,
+                "Mode": "fail"
+            },
+            "Tasks": [
+                {
+                    "Artifacts": null,
+                    "Config": {
+                        "image": "eggsbenjamin/zeebe_nomad_long_running_process:latest",
+                        "command": "./main"
+                    },
+                    "Constraints": null,
+                    "DispatchPayload": null,
+                    "Driver": "docker",
+                    "Env": {
+                        "ZEEBE_FAIL_JOB_FLAG": "false",
+                        "ZEEBE_JOB_KEY": "541205",
+                        "ZEEBE_PAYLOAD": "{}",
+                        "DURATION": "30s",
+                        "ZEEBE_BROKER_URL": "10.0.2.2:26500"
+                    },
+                    "KillSignal": "",
+                    "KillTimeout": 5000000000,
+                    "Leader": false,
+                    "LogConfig": {
+                        "MaxFileSizeMB": 10,
+                        "MaxFiles": 10
+                    },
+                    "Meta": null,
+                    "Name": "long_running_process",
+                    "Resources": {
+                        "CPU": 500,
+                        "DiskMB": 0,
+                        "IOPS": 0,
+                        "MemoryMB": 256,
+                        "Networks": [
+                            {
+                                "CIDR": "",
+                                "Device": "",
+                                "DynamicPorts": [
+                                    {
+                                        "Label": "db",
+                                        "Value": 0
+                                    }
+                                ],
+                                "IP": "",
+                                "MBits": 10,
+                                "ReservedPorts": null
+                            }
+                        ]
+                    },
+                    "Services": [
+                        {
+                            "AddressMode": "auto",
+                            "CanaryTags": null,
+                            "CheckRestart": null,
+                            "Checks": [
+                                {
+                                    "AddressMode": "",
+                                    "Args": null,
+                                    "CheckRestart": null,
+                                    "Command": "",
+                                    "GRPCService": "",
+                                    "GRPCUseTLS": false,
+                                    "Header": null,
+                                    "Id": "",
+                                    "InitialStatus": "",
+                                    "Interval": 10000000000,
+                                    "Method": "",
+                                    "Name": "alive",
+                                    "Path": "",
+                                    "PortLabel": "",
+                                    "Protocol": "",
+                                    "TLSSkipVerify": false,
+                                    "Timeout": 2000000000,
+                                    "Type": "tcp"
+                                }
+                            ],
+                            "Id": "",
+                            "Name": "redis-cache",
+                            "PortLabel": "db",
+                            "Tags": [
+                                "global",
+                                "cache"
+                            ]
+                        }
+                    ],
+                    "ShutdownDelay": 0,
+                    "Templates": null,
+                    "User": "",
+                    "Vault": null
+                }
+            ],
+            "Update": null
+        }
+    ],
+    "Type": "batch",
+    "Update": {
+        "AutoRevert": false,
+        "Canary": 0,
+        "HealthCheck": "",
+        "HealthyDeadline": 0,
+        "MaxParallel": 0,
+        "MinHealthyTime": 0,
+        "ProgressDeadline": 0,
+        "Stagger": 0
+    },
+    "VaultToken": "",
+    "Version": 0
+}
